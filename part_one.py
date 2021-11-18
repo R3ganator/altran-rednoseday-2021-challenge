@@ -4,7 +4,7 @@ from Directions import *
 
 class Code:
     def __init__(self):
-        self.f = open("Alexander_input.txt", "r")
+        self.f = open("test.txt", "r")
         self.keypad = np.arange(1, 10).reshape(3, 3)
 
     def find(self, numb):
