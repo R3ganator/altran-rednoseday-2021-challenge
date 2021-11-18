@@ -1,49 +1,37 @@
 import numpy as np
+from Directions import *
 
 
 class Code:
     def __init__(self):
-        self.inst = open("Alexander_input.txt", "r")
+        self.f = open("Alexander_input.txt", "r")
         self.keypad = np.arange(1, 10).reshape(3, 3)
 
-    def find(self, num):
-        result = np.where(self.keypad == num)
+    def find(self, numb):
+        result = np.where(self.keypad == numb)
         list_coord = list(zip(result[0], result[1]))
         coord = None
         for coord in list_coord:
             coord = list(coord)
         return coord
 
-    def up(self, num):
-        coord = self.find(num)
-        if coord[0] != 0:
-            coord[0] = coord[0] - 1
-        return coord
 
-    def down(self, num):
-        coord = self.find(num)
-        if coord[0] != 2:
-            coord[0] = coord[0] + 1
-        return coord
-
-    def left(self, num):
-        coord = self.find(num)
-        if coord[1] != 0:
-            coord[1] = coord[1] - 1
-        return coord
-
-    def right(self, num):
-        coord = self.find(num)
-        if coord[1] != 2:
-            coord[1] = coord[1] + 1
-        return coord
-
-    # for line in inst:
-    #     start = keypad[1, 1]
-    #     print(start)
-    #     for dir in line:
-    #         if dir == "U":
-
-
-
-    # print(keypad[0, 2])
+if __name__ == '__main__':
+    inst = Code()
+    code = []
+    start = inst.keypad[1, 1]
+    new = []
+    num = start
+    for line in inst.f:
+        for dir in line:
+            if dir == "U":
+                new = up(num)
+            elif dir == "D":
+                new = down(num)
+            elif dir == "L":
+                new = left(num)
+            elif dir == "R":
+                new = right(num)
+            num = new
+        code.append(num)
+    print(code)
